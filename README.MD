@@ -178,13 +178,14 @@ String input and file input cannot be used together.
 
 ## Supported Methods
 
-| Method | Encode | Decode |
-|--------|--------|--------|
-| md5    | ✅      | ❌      |
-| sha1   | ✅      | ❌      |
-| base64 | ✅      | ✅      |
-| url    | ✅      | ✅      |
-| rot13  | ✅      | ✅      |
+| Method      | Encode | Decode |
+|-------------|--------|--------|
+| md5         | ✅      | ❌      |
+| sha1        | ✅      | ❌      |
+| base64      | ✅      | ✅      |
+| url         | ✅      | ✅      |
+| rot13       | ✅      | ✅      |
+| html-entity | ✅      | ✅      |
 
 ## Error Handling
 
@@ -198,7 +199,7 @@ MiniChef validates:
 
 ## License
 
-MIT License
+Apache License
 
 ## Author
 
