@@ -2,6 +2,7 @@ import argparse
 import base64
 import codecs
 import hashlib
+import html
 from urllib.parse import quote, unquote
 
 DESCRIPTION = """
@@ -29,7 +30,9 @@ Examples:
 
   url encode:
     python minichef.py -m url -s "https://a.com/a b" -e
-
+  
+  html-entity:
+    python minichef.py -s '<html>' -m html-entity -e              
   file:
     python minichef.py -m md5 -f test.txt -e
 """
@@ -49,7 +52,8 @@ def main():
             'md5',
             'sha1',
             'rot13',
-            'url'
+            'url',
+            'html-entity'
         ],
         help='calculate method'
     )
@@ -111,21 +115,22 @@ def main():
             "md5 and sha1 only support encode"
         )
 
+    result = ''
     if args.method == "base64":
-        result = base64_data(
+        result = base64_func(
             args.string,
             args.file,
             args.decode
         )
 
     elif args.method == "md5":
-        result = md5_encode(
+        result = md5_hash(
             args.string,
             args.file
         )
 
     elif args.method == "sha1":
-        result = sha1_encode(
+        result = sha1_hash(
             args.string,
             args.file
         )
@@ -137,7 +142,13 @@ def main():
         )
 
     elif args.method == "url":
-        result = url_function(
+        result = url_func(
+            args.string,
+            args.file,
+            args.decode
+        )
+    elif args.method == "html-entity":
+        result = html_entity_func(
             args.string,
             args.file,
             args.decode
@@ -146,7 +157,7 @@ def main():
     print(result)
 
 
-def md5_encode(string, file):
+def md5_hash(string, file):
     if file:
         with open(file, 'rb') as f:
             string = f.read()
@@ -156,7 +167,7 @@ def md5_encode(string, file):
     return hashlib.md5(string).hexdigest()
 
 
-def sha1_encode(string, file):
+def sha1_hash(string, file):
     if file:
         with open(file, 'rb') as f:
             string = f.read()
@@ -166,7 +177,7 @@ def sha1_encode(string, file):
     return hashlib.sha1(string).hexdigest()
 
 
-def base64_data(string, file, decode):
+def base64_func(string, file, decode):
     if file:
         with open(file, 'rb') as f:
             string = f.read()
@@ -179,7 +190,7 @@ def base64_data(string, file, decode):
     return base64.b64encode(string).decode()
 
 
-def url_function(string, file, decode):
+def url_func(string, file, decode):
     if file:
         with open(file, 'r', encoding='utf-8') as f:
             string = f.read()
@@ -196,6 +207,15 @@ def rot13_func(string, file):
             string = f.read()
 
     return codecs.encode(string, 'rot13')
+
+
+def html_entity_func(string, file, decode):
+    if file:
+        with open(file, 'r', encoding='utf-8') as f:
+            string = f.read()
+    if decode:
+        return html.unescape(string)
+    return html.escape(string)
 
 
 if __name__ == '__main__':

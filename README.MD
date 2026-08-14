@@ -14,6 +14,7 @@ Supported methods:
 * Base64 encode/decode
 * URL encode/decode
 * ROT13 transform
+* html-entity encode/decode
 * MD5 hash
 * SHA1 hash
 * String input
@@ -138,6 +139,22 @@ https%3A%2F%2Fa.com%2Fa%20b
 
 ---
 
+### html-entity
+
+MiniChef use default html encode
+
+Example:
+
+```text
+python minichef.py -s '<html>' -m html-entity -e
+```
+
+Output:
+
+```text
+&lt;html&gt;
+```
+
 ## File Input
 
 MiniChef supports processing files:
@@ -151,7 +168,7 @@ String input and file input cannot be used together.
 ## Available Options
 
 | Option         | Description             |
-| -------------- | ----------------------- |
+|----------------|-------------------------|
 | `-m, --method` | Select operation method |
 | `-s, --string` | Input string            |
 | `-f, --file`   | Input file              |
@@ -162,7 +179,7 @@ String input and file input cannot be used together.
 ## Supported Methods
 
 | Method | Encode | Decode |
-| ------ | ------ | ------ |
+|--------|--------|--------|
 | md5    | ✅      | ❌      |
 | sha1   | ✅      | ❌      |
 | base64 | ✅      | ✅      |
