@@ -9,7 +9,7 @@ DESCRIPTION = """
 MiniChef - a simple data encode/decode tool.
 
 Supported methods:
-  base64, md5, sha1, rot13, url
+  base64, md5, sha1, rot13, url, html-entity
 
 Examples:
 
@@ -32,7 +32,8 @@ Examples:
     python minichef.py -m url -s "https://a.com/a b" -e
   
   html-entity:
-    python minichef.py -s '<html>' -m html-entity -e              
+    python minichef.py -s '<html>' -m html-entity -e         
+         
   file:
     python minichef.py -m md5 -f test.txt -e
 """
