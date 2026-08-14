@@ -33,7 +33,7 @@ Examples:
   
   html-entity:
     python minichef.py -s '<html>' -m html-entity -e         
-         
+
   file:
     python minichef.py -m md5 -f test.txt -e
 """
