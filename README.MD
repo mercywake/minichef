@@ -29,7 +29,7 @@ Supported methods:
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourname/minichef.git
+git clone https://github.com/mercywake/minichef.git
 cd minichef
 ```
 
