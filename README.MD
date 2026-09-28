@@ -141,7 +141,7 @@ https%3A%2F%2Fa.com%2Fa%20b
 
 ### html-entity
 
-MiniChef use default html encode
+MiniChef uses the default HTML entity encoding.
 
 Example:
 
